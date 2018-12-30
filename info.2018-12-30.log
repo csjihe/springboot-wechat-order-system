@@ -1,0 +1,68 @@
+Starting LoggerTest on Ji with PID 6945 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 1.617 seconds (JVM running for 2.526)
+name: imooc, password: 123456
+name: imooc, password: 123456
+error...
+Shutting down ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7095 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 1.736 seconds (JVM running for 2.588)
+name: imooc, password: 123456
+name: imooc, password: 123456
+error...
+Shutting down ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7391 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 1.854 seconds (JVM running for 2.682)
+name: imooc, password: 123456
+name: imooc, password: 123456
+error...
+Shutting down ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7410 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 1.607 seconds (JVM running for 2.297)
+name: imooc, password: 123456
+name: imooc, password: 123456
+error...
+Shutting down ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7541 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 1.93 seconds (JVM running for 2.728)
+name: imooc, password: 123456
+name: imooc, password: 123456
+error...
+Shutting down ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7590 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 1.58 seconds (JVM running for 2.269)
+name: imooc, password: 123456
+name: imooc, password: 123456
+Shutting down ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7842 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7845 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Started LoggerTest in 2.328 seconds (JVM running for 3.001)
+name: imooc, password: 123456
+name: imooc, password: 123456
+Shutting down ExecutorService 'applicationTaskExecutor'
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 2.017 seconds (JVM running for 3.072)
+name: imooc, password: 123456
+name: imooc, password: 123456
+Shutting down ExecutorService 'applicationTaskExecutor'
+Starting LoggerTest on Ji with PID 7881 (started by jhe in /Users/jhe/MOOCs/springboot-wechat-order-system)
+No active profile set, falling back to default profiles: default
+Initializing ExecutorService 'applicationTaskExecutor'
+Started LoggerTest in 1.765 seconds (JVM running for 2.537)
+name: imooc, password: 123456
+name: imooc, password: 123456
+Shutting down ExecutorService 'applicationTaskExecutor'

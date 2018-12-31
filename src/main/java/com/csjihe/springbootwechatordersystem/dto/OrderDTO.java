@@ -1,24 +1,20 @@
-package com.csjihe.springbootwechatordersystem.dataobject;
+package com.csjihe.springbootwechatordersystem.dto;
 
 
+import com.csjihe.springbootwechatordersystem.dataobject.OrderDetail;
 import com.csjihe.springbootwechatordersystem.enums.OrderStatusEnum;
 import com.csjihe.springbootwechatordersystem.enums.PayStatusEnum;
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
-
-@Entity
 @Data
-@DynamicUpdate
-public class OrderMaster {
+public class OrderDTO {
 
     /** Order ID */
-    @Id
     private String orderId;
 
     /** Buyer Name */
@@ -37,10 +33,10 @@ public class OrderMaster {
     private BigDecimal orderAmount;
 
     /** Order status, default as new order */
-    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+    private Integer orderStatus;
 
     /** Payment status, default as unpaid denoted as 0 */
-    private Integer payStatus = PayStatusEnum.WAIT.getCode();
+    private Integer payStatus;
 
     /**  Order created time */
     /** Add @DynamicUpdate annotation */
@@ -51,4 +47,5 @@ public class OrderMaster {
     /** Add @DynamicUpdate annotation */
     private Date updateTime;
 
+    List<OrderDetail> orderDetailList;
 }

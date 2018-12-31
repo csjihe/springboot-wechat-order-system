@@ -1,6 +1,7 @@
 package com.csjihe.springbootwechatordersystem.service;
 
 import com.csjihe.springbootwechatordersystem.dataobject.ProductInfo;
+import com.csjihe.springbootwechatordersystem.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,7 +20,8 @@ public interface ProductService {
     ProductInfo save(ProductInfo productInfo);
 
     // Increase stock
-
+    void increaseStock(List<CartDTO> cartDTOList);
 
     // Decrease stock
+    void decreaseStock(List<CartDTO> cartDTOList);
 }

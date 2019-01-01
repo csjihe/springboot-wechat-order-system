@@ -181,7 +181,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO finish(OrderDTO orderDTO) {
-        return null;
+
+        // 1. check order status
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+            log.error("【完结订单】 Wrong Status, orderId={}, orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
+            throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
+        }
+
+        // 2. modify order status
+        orderDTO.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+        OrderMaster orderMaster = new OrderMaster();
+
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
+
+        if (updatedResult == null) {
+            log.error("【完结订单】Failed to update, orderMasater={}", orderMaster);
+            throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
+        }
+
+        return orderDTO;
     }
 
     @Override

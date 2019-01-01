@@ -1,6 +1,7 @@
 package com.csjihe.springbootwechatordersystem.VO;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
  */
 
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultVO<T> {
 
     /** code used as error code, 0 means no error */

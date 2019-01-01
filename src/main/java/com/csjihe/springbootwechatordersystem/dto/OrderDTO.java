@@ -4,14 +4,18 @@ package com.csjihe.springbootwechatordersystem.dto;
 import com.csjihe.springbootwechatordersystem.dataobject.OrderDetail;
 import com.csjihe.springbootwechatordersystem.enums.OrderStatusEnum;
 import com.csjihe.springbootwechatordersystem.enums.PayStatusEnum;
+import com.csjihe.springbootwechatordersystem.utils.serializer.DataToLongSerializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     /** Order ID */
@@ -40,11 +44,13 @@ public class OrderDTO {
 
     /**  Order created time */
     /** Add @DynamicUpdate annotation */
+    @JsonSerialize(using = DataToLongSerializer.class)
     private Date createTime;
 
 
     /** Order updated time */
     /** Add @DynamicUpdate annotation */
+    @JsonSerialize(using = DataToLongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;

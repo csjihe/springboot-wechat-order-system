@@ -15,6 +15,8 @@ import com.csjihe.springbootwechatordersystem.repository.OrderMasterRepository;
 import com.csjihe.springbootwechatordersystem.service.OrderService;
 import com.csjihe.springbootwechatordersystem.service.ProductService;
 import com.csjihe.springbootwechatordersystem.utils.KeyUtil;
+import jdk.management.resource.internal.ResourceNatives;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +34,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -134,8 +137,46 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderDTO cancel(OrderDTO orderDTO) {
-        return null;
+
+        OrderMaster orderMaster = new OrderMaster();
+
+
+        // 1. check order status, not all orders can be cancelled
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+            log.error("【取消订单】 订单状态不正确, orderId={}, orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
+            throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
+        }
+
+        // 2. change order status -> cancelled
+        orderDTO.setOrderStatus(OrderStatusEnum.CANCELLED.getCode());
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
+
+        if (updatedResult == null) {
+            log.error("【取消订单】Failed to update, orderMasater={}", orderMaster);
+            throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
+        }
+
+        // 3. update stock (increase back)
+        if (CollectionUtils.isEmpty(orderDTO.getOrderDetailList())) {
+            log.error("【取消订单】 No Product Detail in Order, orderDTO={}", orderDTO);
+            throw new SellException(ResultEnum.ORDER_DETAIL_EMPTY);
+        }
+
+        List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream()
+                .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
+                .collect(Collectors.toList());
+
+        productService.increaseStock(cartDTOList);
+
+        // 4. if paid, refund customer
+        if (orderDTO.getOrderStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
+             //TODO
+        }
+
+        return orderDTO;
     }
 
     @Override

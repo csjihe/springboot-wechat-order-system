@@ -12,7 +12,13 @@ public enum ResultEnum {
 
     ORDER_NOT_EXIST(12, "Order Not Exist"),
 
-    ORDERDETAIL_NOT_EXIST(13, "Order Is Empty")
+    ORDERDETAIL_NOT_EXIST(13, "Order Is Empty"),
+
+    ORDER_STATUS_ERROR(14, "Order Status Error"),
+
+    ORDER_UPDATE_ERROR (15, "Failed to Update Order"),
+
+    ORDER_DETAIL_EMPTY(16, "No Order Detail"),
     ;
 
     private Integer code;

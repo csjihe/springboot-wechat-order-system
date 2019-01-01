@@ -2,6 +2,7 @@ package com.csjihe.springbootwechatordersystem.service.implementation;
 
 import com.csjihe.springbootwechatordersystem.dataobject.OrderDetail;
 import com.csjihe.springbootwechatordersystem.dto.OrderDTO;
+import com.csjihe.springbootwechatordersystem.enums.OrderStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -78,7 +79,11 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void cancel() {
+    public void cancel() throws Exception {
+
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCELLED.getCode(), result.getOrderStatus());
     }
 
     @Test

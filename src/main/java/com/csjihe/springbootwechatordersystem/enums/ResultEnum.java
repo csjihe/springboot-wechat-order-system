@@ -19,6 +19,8 @@ public enum ResultEnum {
     ORDER_UPDATE_ERROR (15, "Failed to Update Order"),
 
     ORDER_DETAIL_EMPTY(16, "No Order Detail"),
+
+    ORDER_PAY_STATUS_ERROR(17, "Order Payment Status Error"),
     ;
 
     private Integer code;

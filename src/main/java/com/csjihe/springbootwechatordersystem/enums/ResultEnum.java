@@ -25,6 +25,8 @@ public enum ResultEnum {
     ORDER_PAY_STATUS_ERROR(17, "Order Payment Status Error"),
 
     CART_EMPTY(18, "Cart is empty"),
+
+    ORDER_OWNERSHIP_ERROR(19, "The Order Does not Belong to Current User"),
     ;
 
     private Integer code;

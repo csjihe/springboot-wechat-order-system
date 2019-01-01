@@ -7,6 +7,7 @@ import com.csjihe.springbootwechatordersystem.dto.OrderDTO;
 import com.csjihe.springbootwechatordersystem.enums.ResultEnum;
 import com.csjihe.springbootwechatordersystem.exception.SellException;
 import com.csjihe.springbootwechatordersystem.form.OrderForm;
+import com.csjihe.springbootwechatordersystem.service.BuyerService;
 import com.csjihe.springbootwechatordersystem.service.OrderService;
 import com.csjihe.springbootwechatordersystem.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,9 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private BuyerService buyerService
 
     // Create Order
     // Map<String, String> is map
@@ -81,9 +85,7 @@ public class BuyerOrderController {
     @GetMapping("/detail")
     public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
                                      @RequestParam("orderId") String orderId) {
-        //TODO
-        //Possible security issue
-        OrderDTO orderDTO = orderService.findOne(orderId);
+        OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
         return ResultVOUtil.success(orderDTO);
 
     }
@@ -92,11 +94,7 @@ public class BuyerOrderController {
     @PostMapping("/cancel")
     public ResultVO cancel(@RequestParam("openid") String openid,
                            @RequestParam("orderId") String orderId) {
-        OrderDTO orderDTO = orderService.findOne(orderId);
-
-        //TODO Security Issue
-        orderService.cancel(orderDTO);
-
+        buyerService.cancelOrderOne(openid, orderId);
         return ResultVOUtil.success();
     }
 

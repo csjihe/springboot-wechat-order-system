@@ -10,7 +10,7 @@ public interface OrderService {
     OrderDTO create(OrderDTO orderDTO);
 
     /** Query a single order */
-    OrderDTO findOne(String OrderId);
+    OrderDTO findOne(String orderId);
 
     /** Query a list of orders */
     Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);

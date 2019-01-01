@@ -1,5 +1,6 @@
 package com.csjihe.springbootwechatordersystem.service.implementation;
 
+import com.csjihe.springbootwechatordersystem.converter.OrderMasterToOrderDTOConverter;
 import com.csjihe.springbootwechatordersystem.dataobject.OrderDetail;
 import com.csjihe.springbootwechatordersystem.dataobject.OrderMaster;
 import com.csjihe.springbootwechatordersystem.dataobject.ProductInfo;
@@ -17,9 +18,11 @@ import com.csjihe.springbootwechatordersystem.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 
 import java.math.BigDecimal;
@@ -97,13 +100,37 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDTO findOne(String OrderId) {
-        return null;
+    public OrderDTO findOne(String orderId) {
+
+        OrderMaster orderMaster = orderMasterRepository.findOne(orderId);
+        if (orderMaster == null) {
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
+        }
+
+        List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId(orderId);
+
+        if (CollectionUtils.isEmpty(orderDetailList)) {
+            throw new SellException(ResultEnum.ORDERDETAIL_NOT_EXIST);
+        }
+
+        OrderDTO orderDTO = new OrderDTO();
+
+        BeanUtils.copyProperties(orderMaster, orderDTO);
+
+        orderDTO.setOrderDetailList(orderDetailList);
+        return orderDTO;
     }
 
     @Override
     public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
-        return null;
+        Page<OrderMaster> orderMasterPage = orderMasterRepository
+                .findByBuyerOpenid(buyerOpenid, pageable);
+
+        List<OrderDTO> orderDTOList
+                = OrderMasterToOrderDTOConverter.convert(orderMasterPage.getContent());
+
+        return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+
     }
 
     @Override
